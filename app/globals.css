@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased min-h-screen;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-3xl border border-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)];
+  }
+  .card {
+    @apply glass rounded-2xl p-6 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-stone-500/10 hover:border-white/20 relative z-10 overflow-hidden;
+  }
+  /* Add a subtle top highlight to cards */
+  .card::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-opacity duration-300;
+  }
+  .card:hover::before {
+    @apply opacity-100;
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-stone-200 to-stone-500;
+  }
+  .btn-primary {
+    @apply px-6 py-2.5 bg-gradient-to-b from-zinc-800 to-black border border-stone-700 hover:border-stone-400 text-stone-100 rounded-xl font-medium transition-all duration-300 shadow-lg shadow-black/50 hover:shadow-stone-700/20 hover:-translate-y-0.5 flex items-center gap-2 justify-center;
+  }
+}
